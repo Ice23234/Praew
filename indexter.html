@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="praew.css">
+</head>
+
+<body>
+    <div class="letter-popup">
+        <div class="envelope-top"></div>
+        <div class="letter-content">
+            <h2>ถึงบี๋</h2>
+            <p>ขอโทษครับบี๋งอนกันอีกแล้วแน่ๆ ยังไงเค้าก็อยากคุยกับบี๋นะถึงเราจะเจอแต่เรื่องแย่ๆกันมาเค้าก็พยายาม
+                เค้ารักเธอมากนะไม่ต่างจากวันแรกและไม่นอนไปกว่าวันนั้น ขอบคุณที่ให้เค้าได้รักบี๋นะรักนะ
+                บี๋คือคนพิเศษสำหรับเค้านะรักนะ<br><br>
+            </p>
+        </div>
+    </div>
+    <div class="button-group">
+        <button id="forgiveBtn">ให้อภัย</button>
+        <button id="noForgiveBtn">ไม่ให้อภัย</button>
+    </div>
+    <script>
+        const noForgiveBtn = document.getElementById('noForgiveBtn');
+        const forgiveBtn = document.getElementById('forgiveBtn');
+        const letterPopup = document.querySelector('.letter-popup');
+
+        // ฟังก์ชันสุ่มตำแหน่งปุ่ม "ไม่ให้อภัย" ภายใน container
+        function moveButtonRandomly() {
+            const containerRect = letterPopup.getBoundingClientRect();
+            const btnWidth = noForgiveBtn.offsetWidth;
+            const btnHeight = noForgiveBtn.offsetHeight;
+
+            // คำนวณตำแหน่งสุ่มที่ไม่เกินขอบ container
+            const maxX = containerRect.width - btnWidth;
+            const maxY = containerRect.height - btnHeight;
+
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            noForgiveBtn.style.position = 'absolute';
+            noForgiveBtn.style.left = randomX + 'px';
+            noForgiveBtn.style.top = randomY + 'px';
+        }
+
+        // เวลาจะคลิก ปุ่ม "ไม่ให้อภัย" ให้หนีไปตำแหน่งใหม่
+        noForgiveBtn.addEventListener('mouseenter', moveButtonRandomly);
+
+        // ปุ่ม "ให้อภัย" กลับหน้าแรก (index.html)
+        forgiveBtn.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+
+</html>
